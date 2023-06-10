@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,12 +11,12 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.dto.User;
 
 @Repository
-public class UserReository {
+public class Userpository {
 
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public UserReository(JdbcTemplate jdbcTemplate) {
+    public Userpository(JdbcTemplate jdbcTemplate) {
 	this.jdbcTemplate = jdbcTemplate;
     }
 
@@ -28,7 +29,16 @@ public class UserReository {
 	String query = "SELECT * FROM User";
 	RowMapper<User> rowMapper = new UserRowMapper();
 	return this.jdbcTemplate.query(query, rowMapper);
+    }
 
+    /**
+     * ユーザ情報を取得
+     * 
+     * @param name
+     * @return
+     */
+    public List<User> selectUsersByName(String name) {
+	return Collections.emptyList();
     }
 
 }

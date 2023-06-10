@@ -8,23 +8,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.dto.User;
-import com.example.demo.repository.UserReository;
+import com.example.demo.repository.Userpository;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
 
-    private final UserReository userReository;
+    private final Userpository userpository;
 
-    public UserController(UserReository userReository) {
-	this.userReository = userReository;
+    public UserController(Userpository userpository) {
+	this.userpository = userpository;
     }
 
     @GetMapping("")
     public String index(Model model) {
-	List<User> users = userReository.selectUsers();
+	List<User> users = userpository.selectUsers();
 	model.addAttribute("users", users);
 	return "user/index";
     }
-
 }
