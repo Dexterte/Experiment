@@ -32,7 +32,7 @@
 		<tbody>
 			<tr th:each="user: ${users}" th:object="${user}">
 				<th scope="row" th:text="*{userId}"></th>
-				<td th:text="*{name}">Mark</td>
+				<td th:text="*{name}"></td>
 				<td th:text="*{age}"></td>
 				<td th:text="*{sex}"></td>
 			</tr>
