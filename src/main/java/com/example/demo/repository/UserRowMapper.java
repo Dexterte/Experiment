@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import com.example.demo.dto.User;
+import com.example.demo.entity.User;
 
 public class UserRowMapper implements RowMapper<User> {
 
