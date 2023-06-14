@@ -1,6 +1,5 @@
 package com.example.demo.repository;
 
-import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +37,9 @@ public class Userpository {
      * @return
      */
     public List<User> selectUsersByName(String name) {
-	return Collections.emptyList();
+	String query = String.format("SELECT * FROM User WHERE name = '%s'", name);
+	RowMapper<User> rowMapper = new UserRowMapper();
+	return this.jdbcTemplate.query(query, rowMapper);
     }
 
 }
