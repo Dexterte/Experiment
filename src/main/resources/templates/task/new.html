@@ -15,7 +15,7 @@
 			<h1>新規登録画面</h1>
 		</header>
 		<div class="row">
-			<form th:object="${taskForm}">
+			<form th:action="@{/task/new}" th:object="${taskForm}" method="post">
 				<div class="form-group">
 					<label class="form-label">タイトル</label>
 					<input type="text" class="form-control" th:field="*{title}" th:errorclass="is-invalid">
