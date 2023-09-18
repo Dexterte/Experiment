@@ -9,10 +9,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.form.TaskForm;
+import com.example.demo.repository.TaskRepository;
 
 @Controller()
 @RequestMapping("/task")
 public class TaskController {
+
+    private final TaskRepository taskRepository;
+
+    public TaskController(TaskRepository taskRepository) {
+	this.taskRepository = taskRepository;
+    }
 
     @GetMapping("")
     public String index() {
@@ -29,6 +36,7 @@ public class TaskController {
 	if (result.hasErrors()) {
 	    return "task/new";
 	}
+	this.taskRepository.insertTask(form);
 	return "redirect:/task";
     }
 }
