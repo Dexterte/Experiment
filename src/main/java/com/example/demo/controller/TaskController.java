@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +23,9 @@ public class TaskController {
     }
 
     @GetMapping("")
-    public String index() {
+    public String index(Model model) {
+	var tasks = taskRepository.selectTasks();
+	model.addAttribute("tasks", tasks);
 	return "task/index";
     }
 
