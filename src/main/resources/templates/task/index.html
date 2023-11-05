@@ -11,8 +11,18 @@
 <body>
 	<div class="container"><button class="btn btn-secondary" onclick="location.href='/task/new'">新規登録</button>
 		<h1>Task Controller</h1>
-		
-		
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">Title</th>
+					<th scope="col">Content</th>
+				</tr>
+			</thead>
+			<tr th:each="task: ${tasks}" th:object="${task}">
+				<th th:text="*{title}"></th>
+				<th th:text="*{content}"></th>
+			</tr>
+		</table>
 	</div>
 </body>
 </html>
