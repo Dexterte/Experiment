@@ -11,15 +11,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.form.TaskForm;
 import com.example.demo.repository.TaskRepository;
+import com.example.demo.service.TaskService;
 
 @Controller()
 @RequestMapping("/task")
 public class TaskController {
 
     private final TaskRepository taskRepository;
+    private final TaskService taskService;
 
-    public TaskController(TaskRepository taskRepository) {
+    public TaskController(TaskRepository taskRepository, TaskService taskService) {
 	this.taskRepository = taskRepository;
+	this.taskService = taskService;
     }
 
     @GetMapping("")
@@ -39,7 +42,7 @@ public class TaskController {
 	if (result.hasErrors()) {
 	    return "task/new";
 	}
-	this.taskRepository.insertTask(form);
+	this.taskService.insertTask(form);
 	return "redirect:/task";
     }
 }

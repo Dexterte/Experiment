@@ -7,7 +7,6 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.entity.Task;
-import com.example.demo.form.TaskForm;
 
 @Repository
 public class TaskRepository {
@@ -23,7 +22,7 @@ public class TaskRepository {
      * 
      * @param task
      */
-    public void insertTask(TaskForm task) {
+    public void insertTask(Task task) {
 	String query = """
 		INSERT INTO Task
 		(
