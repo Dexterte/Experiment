@@ -1,5 +1,8 @@
 package com.example.demo.repository;
 
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.*;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -21,9 +24,14 @@ import org.dbunit.operation.DatabaseOperation;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.test.jdbc.JdbcTestUtils;
+
+import com.example.demo.entity.Task;
 
 @SpringBootTest
 class TaskRepositoryTest {
@@ -108,5 +116,17 @@ class TaskRepositoryTest {
 	    connection.close();
 	    dbConnection.close();
 	}
+    }
+
+    @Test
+    @DisplayName("insertTasktメソッドで1件新規登録できることを確認する")
+    public void insertTaskTest() {
+	var task = new Task();
+	task.setTitle("17時からMTG");
+	task.setContent("");
+	repository.insertTask(task);
+
+	int actual = JdbcTestUtils.countRowsInTable(jdbcTemplate, "Task");
+	assertThat(actual, is(2));
     }
 }
